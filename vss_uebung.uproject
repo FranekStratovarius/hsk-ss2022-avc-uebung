@@ -1,0 +1,16 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{8F38DB21-A74C-4C0E-AECC-E6DDC0E94192}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "vss_uebung",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	]
+}
