@@ -7,8 +7,7 @@
 #include "MyCharacter.generated.h"
 
 UCLASS(config=Game)
-class VSS_UEBUNG_API AMyCharacter : public ACharacter
-{
+class VSS_UEBUNG_API AMyCharacter : public ACharacter {
 	GENERATED_BODY()
 
 public:
@@ -21,6 +20,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Character)
+	bool isProne = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Character)
+	bool isStanding = true;
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -28,6 +32,7 @@ protected:
 
 	void MoveForward(float value);
 	void MoveRight(float value);
+	void BeginProne();
 
 public:	
 	// Called every frame
@@ -35,7 +40,4 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	
-	
 };
