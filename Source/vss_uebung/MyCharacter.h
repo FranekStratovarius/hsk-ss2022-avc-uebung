@@ -6,7 +6,7 @@
 #include "GameFramework/Character.h"
 #include "MyCharacter.generated.h"
 
-UCLASS()
+UCLASS(config=Game)
 class VSS_UEBUNG_API AMyCharacter : public ACharacter
 {
 	GENERATED_BODY()
@@ -14,6 +14,13 @@ class VSS_UEBUNG_API AMyCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AMyCharacter();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	class USpringArmComponent* CameraBoom;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	class UCameraComponent* FollowCamera;
+
 
 protected:
 	// Called when the game starts or when spawned

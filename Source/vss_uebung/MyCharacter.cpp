@@ -3,7 +3,8 @@
 
 #include "MyCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
-
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -15,6 +16,22 @@ AMyCharacter::AMyCharacter()
 	GetCharacterMovement()->AirControl = 0.2f;
 
 	this->JumpMaxHoldTime = 0.5f;
+
+	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
+	CameraBoom->SetupAttachment(this->RootComponent);
+	CameraBoom->TargetArmLength = 300.0f;
+
+	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
+	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+
+	bUseControllerRotationYaw = false;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationRoll = false;
+
+	CameraBoom->bUsePawnControlRotation = true;
+	FollowCamera->bUsePawnControlRotation = false;
+
+	GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 
 // Called when the game starts or when spawned
